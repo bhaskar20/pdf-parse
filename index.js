@@ -1,10 +1,11 @@
-﻿/*
+﻿
+'use strict'
 //pdf-text-extract
 //wrong password error
 var fs = require("fs");
 var path = require("path");
 //var filePath = path.join(__dirname, '/pdf/1060376270320161922264964032845456.pdf');
-var filePath = path.join(__dirname, '/pdf/pdf-sample.pdf');
+var filePath = path.join(__dirname, '/pdf/test.pdf');
 
 
 var extract = require('pdf-text-extract')
@@ -17,7 +18,7 @@ extract(filePath, {
   }
   console.dir(pages)
 })
-*/
+
 /*
 //pdf-extract no option for read-protected files
 //https://github.com/nisaacson/pdf-extract/issues/14
@@ -41,5 +42,39 @@ processor.on('complete', function(data) {
 processor.on('error', function(err) {
   inspect(err, 'error while extracting pages');
   return callback(err);
+});
+*/
+
+/*
+not for password protected
+//pdf2json
+let fs = require('fs'),
+        PDFParser = require("pdf2json");
+
+ let pdfParser = new PDFParser();
+
+    pdfParser.on("pdfParser_dataError", errData => console.error(errData.parserError) );
+    pdfParser.on("pdfParser_dataReady", pdfData => {
+        fs.writeFile("./pdf/pdf-test.json", JSON.stringify(pdfData));
+    });
+
+    pdfParser.loadPDF("./pdf/pdf-sample.pdf");
+
+*/
+/*
+//No password but can be developed
+var path = require("path");
+var pdfUtil = require('pdf-to-text');
+var pdf_path = path.join(__dirname, '/pdf/asd_no.pdf');
+
+pdfUtil.info(pdf_path,function(err, info) {
+    if (err) throw(err);
+    console.log(info);
+});
+
+//Omit option to extract all text from the pdf file
+pdfUtil.pdfToText(pdf_path, function(err, data) {
+  if (err) throw(err);
+  console.log(data); //print all text    
 });
 */
